@@ -1,0 +1,122 @@
+<div class="content">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+    <div class="inner-content consultation prep">
+      <h4 class="content-title">
+        Проверка связи
+      </h4>
+      <div class="video-check">
+        <p class="consultation-point-title"><span>1 </span>Убедитесь, что вас хорошо видно</p>
+        <div class="video-container small">
+          <!--<video src=""></video>-->
+          <video id="gum-local" autoplay playsinline ></video>
+        </div>
+      </div>
+      <div class="micro-check">
+        <p class="consultation-point-title"><span>2 </span>Говорите в микрофон</p>
+        <div class="test-micro-container">
+          <button class="test-micro" id="callButton"></button>
+          <div class="test-micro-progress-bar">
+
+              <div id="meters">
+                <div id="instant" class="meter">
+                  <div class="label">Instant: </div>
+                  <meter  high="0.25" max="1" value="0">
+
+                  </meter>
+                  <div class="value" style="display: none"></div>
+                </div>
+              </div>
+
+            <div class="meter">
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <div class="col-line"></div>
+              <!--  <span style="width: 46.42%;">Disk Usage - 55.93GB out of 120GB</span> -->
+            </div>
+        </div>
+        <p class="micro-note">Чтобы вас отчётливо слышал врач, постарайтесь быть ближе к микрофону.</p>
+      </div>
+      <div class="sound-check">
+        <p class="consultation-point-title"><span>3 </span>Проверьте, что нас слышно</p>
+        <audio id="sound-check" preload="true"  loop>
+          <source src="https://mp3ringtony.ru//files/006/standartnyj_signal_na_sms_blackberry.mp3" >
+          <source src="https://mp3ringtony.ru//files/006/standartnyj_signal_na_sms_blackberry.mp3">
+        </audio>
+
+        <div id="audioplayer">
+          <div class="play-btn-container">
+            <div id="pButton" class="play">
+              <img src="assets/img/icons/play.svg" id="img_audio">
+            </div>
+          </div>
+
+          <div class="audio-progress-bar-container">
+            <!-- <div class="audio-progress-bar" id="audio-progress-bar">
+              <div id="playhead"></div>
+            </div> -->
+            <input id="audio-vol-control" type="range" min="0" max="100" step="1" oninput="SetAudioVolume(this.value)" onchange="SetAudioVolume(this.value)">
+
+          </div>
+        </div>
+        <!-- 						<audio id="music" preload="true">
+                                  <source src="http://www.alexkatz.me/codepen/music/interlude.mp3">
+                                            <source src="http://www.alexkatz.me/codepen/music/interlude.ogg">
+                                </audio>
+        <div id="audioplayer">
+            <button id="pButton" class="play"></button>
+          <div id="timeline">
+                    <div id="playhead"></div>
+          </div>
+        </div> -->
+
+      </div>
+      <div class="line"></div>
+      <p class="test-help-text">Если вас всё устраивает, нажмите далее для продолжения. Или воспользуйтесь нашими <a data-toggle="modal" data-target="#privacy_policy" class="color-green-teal">советами по настройке</a> оборудования.</p>
+      <button
+        type="button"
+        class="btn btn-continue btn-green"
+        (click)="redirectConsultation()"
+        >Продолжить</button>
+    </div>
+  </div>
+</div>
+<!--<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>-->
+
+<!-- Modal privacy_policy -->
+<div id="privacy_policy" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><img src="/assets/img/icons/close-dark.svg"></button>
+          <h4 class="modal-title content-title">Политика конфеденциальности сервиса</h4>
+        </div>
+        <div class="modal-body" [innerHtml]="privacy_policy_html">
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,45 @@
+<!-- Content -->
+<div class="content">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+    <div class="inner-content change-number step2">
+      <h4 class="content-title">
+        Смена номера телефона
+      </h4>
+      <div class="alert alert-danger" *ngIf="errorMessage !==''">
+        <strong>{{ errorMessage }}</strong>
+      </div>
+      <div class="form-group-container">
+        <div class="form-group">
+          <label for="tel-old">Старый номер телефона</label>
+          <input type="tel" class="form-control" id="tel-old" placeholder="{{oldnumber}}" readonly>
+        </div>
+        <div class="form-group">
+          <label for="tel-new">Новый номер телефона</label>
+
+          <app-phone-prefix class="widjet_button" id="tel-new" locale="ru" [(ngModel)]="newphone" #phone_number="ngModel" [maxLength]="18"></app-phone-prefix>
+          <a (click)="show()" class="change-link" *ngIf="verifayCode">Изменить</a>
+
+        </div>
+        <div class="form-group" *ngIf="verifayCode">
+          <input type="text" class="form-control" id="tel" placeholder="Код из SMS" #verifay="ngModel" required minlength="5" [(ngModel)]="code">
+
+
+        </div>
+        <button type="button" class="btn btn-login btn-green" (click)="changePhone()" *ngIf="phoneverfikeshn" [disabled]='phone_number.invalid'>Отправить код
+        </button>
+        <p class="code-time" *ngIf="count_resend">Вы сможете запросить
+          <br> повторный код через: {{countDown | async}} сек.
+        </p>
+        <a class="double-code color-green-teal" (click)="resendCode()" *ngIf="!count_resend && start_timer">Выслать повторный код</a>
+        <br>
+        <br>
+        <button type="button" class="btn btn-login btn-green" (click)="VerificationCode()" *ngIf="verifayCode">
+          Продолжить
+        </button>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

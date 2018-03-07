@@ -1,0 +1,144 @@
+<div class="content" (click)="checkMessage()">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+    <div class="inner-content consultation">
+      <h4 class="content-title">
+        Подготовка к консультации
+      </h4>
+      <div class="form-group textarea-form-group consultation-form-group">
+        <textarea #text="ngModel" required class="form-control" [ngClass]="{'disable_msg': messageStatus}" 
+        rows="5" id="comment" placeholder="Опишите, что вас беспокоит…" [(ngModel)]="message"
+        (input)="checkMessage()">
+      </textarea>
+      </div>
+      <mat-progress-spinner class="spinner-consultation-info" *ngIf="!(proffesion && enabledDockCategory)" diameter="40" mode="indeterminate"></mat-progress-spinner>
+      <div *ngIf="proffesion && enabledDockCategory">
+        <div class="dropdown doc-prof">
+          <label>Необходимый врач</label>
+          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">{{profName}}
+            <div class="dropdown-arrow-container">
+              <img src="assets/img/icons/arrow.svg">
+            </div>
+          </button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let prof of proffesion" (click)="doctor(prof)">
+              <a *ngIf="!prof.disabled">
+                {{prof.caption_key}}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <p class="doc-category-title">Категория врача</p>
+        <div class="doc-category-group">
+          <!-- <label>Категория врача</label> -->
+          <form>
+            <div class="item" *ngFor="let doc of enabledDockCategory let i = index" [ngClass]="{'active' : (selectedDock && doc.caption_key === selectedDock.caption_key)}">
+              <label>
+                <input type="radio" name="optradio" [value]="doc" [(ngModel)]="selectedDock" (change)="checkCategory()">
+                <div class="item-info">
+                  <span class="pull-left">{{doc.caption_key}}</span>
+                  <span class="pull-right">{{doc.price}} ₽</span>
+                </div>
+                <div class="question-icon-container">
+                  <a data-toggle="modal" data-target="#price_list">
+                    <img src="assets/img/icons/question.svg">
+                  </a>
+                </div>
+              </label>
+            </div>
+          </form>
+        </div>
+        <div *ngIf="disabledDockCategory && disabledDockCategory.length > 0">
+          <p class="doc-category-next-release-title">Доступно в ближайших релизах</p>
+          <div class="doc-category-group">
+            <div class="item" *ngFor="let doc of disabledDockCategory">
+              <label>
+                <div class="item-info">
+                  <span class="pull-left">{{doc.caption_key}}</span>
+                  <span class="pull-right">{{doc.price}} ₽</span>
+                </div>
+                <div class="question-icon-container">
+                  <a data-toggle="modal" data-target="#price_list">
+                    <img src="assets/img/icons/question.svg">
+                  </a>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="service-cost">
+          <p>Указана стоймость за первые 15 минут.</p>
+          <p>
+            <a class="color-green-teal dotted" data-toggle="modal" data-target="#price_list">Подробнее от тарифах</a>
+          </p>
+        </div>
+
+        <!-- <div class="checkbox-info-block anonym-appointment">
+
+          <input
+            type="checkbox"
+            name=""
+            [(ngModel)]="anonim">
+          <label>
+            Анонимный приём
+            <img src="assets/img/icons/question.svg">
+          </label>
+
+      </div> -->
+        <button [disabled]="!check1 || !check2 || text.invalid" type="submit" (click)="redirectConsultingCalling()"
+          class="btn btn-continue btn-green">Получить консультацию</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal price_list -->
+<div id="price_list" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <img src="/assets/img/icons/close-dark.svg">
+        </button>
+        <h4 class="modal-title">Подробнее от тарифах</h4>
+      </div>
+      <div class="modal-body" [innerHtml]="service_rules_html">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal privacy_policy -->
+<div id="call-start" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div>
+        <button type="button" class="close" data-dismiss="modal">
+          <img src="/assets/img/icons/close-dark.svg">
+        </button>
+      </div>
+      <div class="modal-body text-center" [innerHtml]="call_start_message"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal privacy_policy -->
+<div id="wrong_routing_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div>
+        <button type="button" class="close" data-dismiss="modal">
+          <img src="/assets/img/icons/close-dark.svg">
+        </button>
+      </div>
+      <div class="modal-body text-center" [innerHtml]="wrong_routing_modal_message"></div>
+    </div>
+  </div>
+</div>

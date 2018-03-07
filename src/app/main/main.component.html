@@ -1,0 +1,83 @@
+<div class="content">
+	<div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+		<div class="inner-content main">
+			<div class="main-account-header">
+				<div class="pic-container main" [ngStyle]="{'background-image': 'url(' + avatar + ')'}"></div>
+				<div *ngIf="information['first_name']" class="info-container">
+					<div class="full-name">{{information['first_name']}} <br> {{information['last_name']}}</div>
+					<p><span class="city">{{information['country']}} {{information['city']}}</span></p>
+				</div>
+				<mat-progress-spinner class="spinner-user-info" *ngIf="!information['first_name']" diameter="40" mode="indeterminate"></mat-progress-spinner>
+			</div>
+			<div class="main-account-personal-details">
+				<div class="height" (click)="redirectPersonalData()">
+					<a>
+						<p><img src="assets/img/icons/avatar.svg"><div *ngIf="badgesCounts.profile && badgesCounts.profile.counter != 0" class="badge_point"></div></p>
+						<p>Профиль</p>
+					</a>
+				</div>
+				<div class="weight" (click)="redirectPayments()">
+					<a>
+						<p><img src="assets/img/icons/pay.svg"><div *ngIf="badgesCounts.billing && badgesCounts.billing.counter != 0" class="badge_point"></div></p>
+						<p>Оплата</p>
+					</a>
+				</div>
+				<div class="sex" (click)="redirectHistoryConsultation()">
+					<a>
+						<p><img src="assets/img/icons/illness-story.svg"><div *ngIf="badgesCounts.appointments && badgesCounts.appointments.counter != 0" class="badge_point"></div></p>
+						<p>Обращения</p>
+					</a>
+				</div>
+			</div>
+
+			<div class="account-nav-menu online-consultations-block ">
+				<div class="title-block">Онлайн-консультации</div>
+				<mat-progress-spinner class="spinner-specializations " *ngIf="!specializations" diameter="40" mode="indeterminate"></mat-progress-spinner>
+				<div class="item" *ngFor="let s of specializations" [ngClass]="{'hide_disabled' : s.disabled }"  (click)="redirectConsultationPrep(s.id)">
+					<div>
+						<p class="color-title-gray">{{s.caption}}</p>
+						<p><span *ngFor="let s_child of s.specialties">{{s_child.caption}} </span></p>
+					</div>
+					<a class="arrow-container pull-right">
+						<img src="assets/img/icons/arrow.svg">
+					</a>
+				</div>
+			</div>
+			<div class="account-nav-menu services-block">
+				<div class="title-block">Услуги (доступно в ближайших релизах)</div>
+				<mat-progress-spinner class="spinner-specializations " *ngIf="!specializations" diameter="40" mode="indeterminate"></mat-progress-spinner>
+				<div class="item disabled" *ngFor="let s of specializations" [ngClass]="{'hide_disabled' : !s.disabled }">
+					<div>
+						<p>{{s.caption}}</p>
+						<p><span *ngFor="let s_child of s.specialties">{{s_child.caption}} </span></p>
+					</div>
+					<a class="arrow-container pull-right">
+						<img src="assets/img/icons/arrow.svg">
+					</a>
+				</div>
+				<div class="item disabled">
+					<div>
+						<p>Второе мнение специалиста</p>
+						<p>Проверьте установленный диагноз</p>
+					</div>
+					<a class="arrow-container pull-right">
+						<img src="assets/img/icons/arrow.svg">
+					</a>
+				</div>
+				<div class="item disabled">
+					<div>
+						<p>Расшифровка анализов</p>
+						<p>Экспертное описание результатов</p>
+					</div>
+					<a class="arrow-container pull-right">
+						<img src="assets/img/icons/arrow.svg">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+

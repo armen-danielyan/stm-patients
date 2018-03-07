@@ -1,0 +1,98 @@
+<!-- Content -->
+<div class="content">
+    <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+      <div class="inner-content">
+        <h4 class="content-title">
+          Пользовательские соглашения
+        </h4>
+        <div class="user-agreement-note">Пожалуйста внимательно ознакомьтесь с правилами использования нашей системы и политикой обработки личных данных.</div>
+         <div class="form-group-container user-agreement">
+          <div class="checkbox-info-block">
+            <input
+              type="checkbox"
+              name=""
+               [(ngModel)]="checkboxes.service_rules" (change)="check1($event)"
+               
+            >
+            <label>
+              <div class="txt">Соглашаюсь с <a data-toggle="modal" data-target="#service_rules">правилами пользования сервисом</a> Dr. Smart</div>
+            </label>
+          </div>
+          <div class="checkbox-info-block">
+            <input
+              type="checkbox"
+              name=""
+               [(ngModel)]="checkboxes.privacy_policy" (change)="check2($event)"
+               
+            >
+            <label>
+              <div class="txt">Соглашаюсь с <a data-toggle="modal" data-target="#privacy_policy">политикой конфеденциальности сервиса</a></div>
+            </label>
+          </div>
+          <div class="checkbox-info-block">
+            <input
+              type="checkbox"
+              name=""
+               [(ngModel)]="checkboxes.dr_smart_isnt_health_facility" (change)="check3($event)"
+               
+             >
+            <label>
+              <div class="txt">Понимаю, что Dr. Smart не заменяет визит в медучреждение</div>
+            </label>
+          </div>
+          <div class="checkbox-info-block">
+            <input
+              type="checkbox"
+              name=""
+               [(ngModel)]="checkboxes.personal_data" (change)="check4($event)"
+               
+            >
+            <label>
+              <div class="txt">Соглашаюсь на хранение моих личных данных</div>
+            </label>
+          </div>
+        </div>
+        <button
+          [disabled]="!(checkboxes.personal_data && checkboxes.dr_smart_isnt_health_facility && checkboxes.privacy_policy && checkboxes.service_rules)"
+          type="submit"
+          (click)="redirectRegister()"
+          [ngClass]="!(checkboxes.personal_data && checkboxes.dr_smart_isnt_health_facility && checkboxes.privacy_policy && checkboxes.service_rules) ? 'btn btn-gray': 'btn btn-green'"
+        >Продолжить</button>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- Modal service_rules -->
+<div id="service_rules" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><img src="/assets/img/icons/close-dark.svg"></button>
+        <h4 class="modal-title">Правила пользования сервисом Dr. Smart</h4>
+      </div>
+      <div class="modal-body" [innerHtml]="service_rules_html">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal privacy_policy -->
+<div id="privacy_policy" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><img src="/assets/img/icons/close-dark.svg"></button>
+        <h4 class="modal-title content-title">Политика конфеденциальности сервиса</h4>
+      </div>
+      <div class="modal-body" [innerHtml]="privacy_policy_html">
+      </div>
+    </div>
+  </div>
+</div>

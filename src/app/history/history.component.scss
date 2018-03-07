@@ -1,0 +1,23 @@
+.appointment_point {
+    width: 8px;
+    height: 8px;
+    background-color: #f94e4e;
+    position: absolute;
+    margin-left: 97%;
+    border: 0px;
+    border-radius: 5px;
+
+    @media (min-width: 1200px) {
+        background-color: #f94e4e;
+        margin-left: 65%;
+    }
+
+    @media (min-width: 992px)  {
+        background-color: #f94e4e;
+        margin-left: 65.5%;
+    }
+  }
+
+.spinner-appeal-history {
+    margin:10px auto 10px;
+}

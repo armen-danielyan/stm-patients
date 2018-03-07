@@ -1,0 +1,33 @@
+.disabled_rank{
+  pointer-events: none;
+  background-color: #bbbbbb;
+  color: #ffffff;
+}
+
+.disabled{
+  pointer-events: none;
+}
+
+.hide_disabled{
+  display: none !important;
+}
+
+.badge_point {
+  width: 8px;
+  height: 8px;
+  background-color: #f94e4e;
+  position: absolute;
+  margin-left: 22%;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.spinner-user-info {
+  display: inline-block;
+  margin: 0px 55px 10px;
+}
+
+.spinner-specializations {
+  display: inline-block;
+  margin: 12px 42.5% 10px;
+}

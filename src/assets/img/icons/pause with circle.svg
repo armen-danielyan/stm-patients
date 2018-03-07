@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="consultation/prepare" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-20.000000, -475.000000)">
+        <g id="Group" transform="translate(20.000000, 475.000000)">
+            <rect id="Rectangle-3" stroke="#00AC64" x="0.5" y="0.5" width="39" height="39" rx="19.5"></rect>
+            <path d="M17,14 L18,14 C18.5522847,14 19,14.4477153 19,15 L19,25 C19,25.5522847 18.5522847,26 18,26 L17,26 C16.4477153,26 16,25.5522847 16,25 L16,15 C16,14.4477153 16.4477153,14 17,14 Z M22,14 L23,14 C23.5522847,14 24,14.4477153 24,15 L24,25 C24,25.5522847 23.5522847,26 23,26 L22,26 C21.4477153,26 21,25.5522847 21,25 L21,15 C21,14.4477153 21.4477153,14 22,14 Z" id="Pause" fill="#00AC64"></path>
+        </g>
+    </g>
+</svg>

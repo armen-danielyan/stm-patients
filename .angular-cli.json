@@ -1,0 +1,84 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "doctor-smart",
+    "ejected": false
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/rateyo/min/jquery.rateyo.min.css",
+        "../node_modules/video.js/dist/video-js.css",
+        "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+        "styles.scss",
+        "theme.scss"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/aws-sdk/dist/aws-sdk.min.js",
+        "../node_modules/amazon-cognito-js/dist/amazon-cognito.min.js",
+        "../node_modules/amazon-cognito-identity-js/dist/amazon-cognito-identity.js",
+        "../node_modules/rateyo/min/jquery.rateyo.min.js",
+        "../src/assets/js/app-jq.js",
+        "../node_modules/skylinkjs/publish/skylink.complete.js",
+        "../src/assets/libs/skylink/edge-attachmediastream.js",
+        "../src/assets/libs/skylink/skylink.wrapper.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "test": "environments/environment.test.ts",
+        "stage": "environments/environment.stage.ts",
+        "prod": "environments/environment.prod.ts",
+        "demo": "environments/environment.demo.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "class": {
+      "spec": false
+    },
+    "component": {
+    }
+  }
+}

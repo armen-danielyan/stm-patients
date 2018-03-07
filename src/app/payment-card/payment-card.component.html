@@ -1,0 +1,32 @@
+<!-- Content -->
+<div class="content " ng-controller="searchController">
+	<div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+		<div class="inner-content profile">
+			<h4 class="content-title">
+				Карта оплаты услуг
+			</h4>
+			<div class="form-group-container">
+				<div class="form-group">
+				  <label for="">Номер банковской карты</label>
+				  <input type="number" class="form-control" id="" placeholder="">
+				</div>						
+				<div class="form-group">
+				  <label for="">Имя владельца</label>
+				  <span class="pull-right f-13">Как указано на карте</span>
+				  <input type="text" class="form-control" id="" placeholder="">
+				</div>											
+				<div class="form-group text-center clearfix mg-bt-20">
+					<div class="card-date pull-left">
+						<label for="">Дата</label>
+						<input type="number" class="form-control" id="" placeholder="">
+					</div>						
+					<div class="card-cvc pull-right">
+						<label for="">CVC2-код</label>
+						<input type="number" class="form-control" id="" placeholder="">
+					</div>
+				</div>					
+			</div>
+			<button type="button" class="btn btn-save btn-green" (click)="redirectPaymentsFill()">Привязать карту</button>
+		</div>
+	</div>
+</div>

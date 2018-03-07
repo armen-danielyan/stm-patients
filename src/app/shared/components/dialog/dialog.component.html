@@ -1,0 +1,5 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>{{ data.text }}</mat-dialog-content>
+<button *ngIf="!data.confirmed && data.confirmed != 0" class="button-close-modal" mat-dialog-close>Закрыть</button>
+<button *ngIf="data.confirmed == 0" mat-dialog-close class="button-close-modal">Нет</button>
+<button *ngIf="data.confirmed == 0" (click)="confirmAction()" class="button-accept-modal">Да</button>

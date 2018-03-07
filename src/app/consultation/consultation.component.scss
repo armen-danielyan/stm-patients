@@ -1,0 +1,31 @@
+.doc-category-group .item:last-child.active{
+  border-bottom: 2px solid #0bc185;
+}
+
+.disabled_rank{
+  pointer-events: none;
+  background-color: #bbbbbb;
+  color: #ffffff;
+}
+
+textarea.ng-invalid.ng-touched{
+  border: 1px solid #f94e4e;
+}
+
+.doc-category-next-release-title {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #777777;
+  margin-top: 18px;
+}
+
+.spinner-consultation-info {
+  margin-left: 42.5%;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.disable_msg {
+  border: 1px solid #f94e4e;
+}

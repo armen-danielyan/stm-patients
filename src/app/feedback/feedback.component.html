@@ -1,0 +1,45 @@
+<!-- Content -->
+<div class="content " ng-controller="searchController">
+	<div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+		<div class="inner-content profile">
+			<h4 class="content-title">
+				Форма обратной связи
+			</h4>
+			<form  (ngSubmit)="onSubmit(f)"  #f=ngForm>
+			<div class="form-group-container">
+				<div class="form-group">
+					<label for="">Ваше имя</label>
+					<input type="text" class="form-control" id="" placeholder="" ngModel name="name">
+				</div>
+				<div class="form-group">
+					<label for="">Email</label>
+					<input type="email" class="form-control" id="" placeholder="" ngModel name="email">
+				</div>
+				<div class="dropdown doc-prof">
+					<label>Тема сообщения</label>
+					<button class="btn dropdown-toggle" type="button" data-toggle="dropdown">{{themeText}}
+						<div class="dropdown-arrow-container">
+							<img src="assets/img/icons/arrow.svg">
+						</div>
+					</button>
+					<ul class="dropdown-menu">
+						<li *ngFor="let th of themes" (click)="selectTheme(th)">
+							<a>{{th.caption}}</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="form-group mg-bt-30">
+					<label for="">Сообщение</label>
+					<textarea class="form-control" rows="3" id="comment" placeholder="" ngModel name="message"></textarea>
+				</div>
+				<div class="form-group mg-bt-30">
+					<re-captcha (resolved)="resolved($event)" siteKey="6Lf2gDsUAAAAAAx56lhEjlDryPPyNQweWomo_nBo"></re-captcha>
+				</div>
+
+			</div>
+			<button type="submit" class="btn btn-save btn-green">Отправить</button>
+		</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,276 @@
+<!-- Content -->
+<div class="content">
+  <mat-progress-spinner class="spinner-personal-data" *ngIf="loading" diameter="40" mode="indeterminate"></mat-progress-spinner>
+  <div *ngIf="!loading">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+    <div class="inner-content profile">
+      <h4 class="content-title">
+        Заполните вашу анкету
+      </h4>
+      <div class="alert alert-danger" *ngIf="errorMessage !==''">
+        <strong>{{ errorMessage }}</strong>
+      </div>
+      <form #f="ngForm" (ngSubmit)="onSubmitData(f)">
+        <label class="profile-pic-title">Ваша фотография</label>
+        <div class="profile-pic-container" style="display: none">
+          <div class="profile-pic">
+            <div class="profile-pic-block delete-profile-pic-block">
+              Удалить
+            </div>
+          </div>
+        </div>
+        <div class="profile-pic-container">
+          <div class="choose-profile-pic-container" [ngStyle]="{'background-image': 'url(' + url + ')'}">
+            <div *ngIf="dow" class="profile-pic-block choose-profile-pic-block">
+              <input type="file" (change)="readUrl($event)" accept=".jpg, .png, .jpeg"
+                     name="img"
+                     #img="ngModel"
+                     [(ngModel)]="Img"
+              >
+              Выбрать фото
+            </div>
+            <div *ngIf="change" class="profile-pic-block delete-profile-pic-block">
+              <input type="file" (change)="readUrl($event)" accept=".jpg, .png, .jpeg"
+                     name="imgChange"
+              >
+              Изменить
+            </div>
+
+
+          </div>
+          <div class="profile-pic-block delete-profile-pic-block" *ngIf="del" (click)="deletePhoto(url)">
+            Удалить
+          </div>
+        </div>
+        <p class="profile-pic-note">На фотографии должно быть только Ваше лицо. Не используйте групповые фото.</p>
+        <div class="form-group-container">
+
+          <div class="form-group">
+            <label for="">Фамилия *</label>
+            <input type="text" class="form-control" id="" placeholder="" name="last_name"
+                   #last_name="ngModel"
+                   required
+                   [(ngModel)]="user.last_name">
+          </div>
+          <div class="form-group">
+            <label for="">Имя *</label>
+            <input type="text" class="form-control" id="" placeholder=""
+                   name="first_name"
+                   #first_name="ngModel"
+                   required
+                   [(ngModel)]="user.first_name">
+
+          </div>
+          <div class="form-group">
+            <label for="">Отчество *</label>
+            <input type="text" class="form-control" id="" placeholder=""
+                   name="mid_name"
+                   #mid_name="ngModel"
+                   required
+                   [(ngModel)]="user.mid_name">
+
+          </div>
+          <div class="form-group">
+              <label for="">Дата рождения *</label>
+              <input type="date" class="calendar-input" name="calendar" [(ngModel)]="user.birth_date">
+          </div>
+          <!-- <div class="form-group">
+            <label for="">Дата рождения *</label>
+            <input type="text" class="form-control" placeholder=""
+                   name="birth_date"
+                   #birth_date="ngModel"
+                   required
+                   [(ngModel)]="user.birth_date"
+                    maxlength="10"
+                    appDatepickerMask
+                   [matDatepicker]="picker"
+                   matInput [max]="maxDate"
+            >
+            <div id="buttons">
+              <mat-datepicker-toggle id="button" matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker disabled="false"></mat-datepicker>
+            </div>
+          </div> -->
+
+          <div class="form-group form-dropdown sex">
+            <label for="">Пол *</label>
+
+            <div class="dropdown doc-prof"
+                 [ngClass]="{'errorMessage': (height.touched || weight.touched) && genders ==='Пол'}">
+              <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">{{genders}}
+                <div class="dropdown-arrow-container">
+                  <img src="assets/img/icons/arrow.svg">
+                </div>
+              </button>
+              <ul class="dropdown-menu">
+                <li *ngFor="let g of gender" (click)="getValue(g.id,g.name)"><a>
+                  {{g.name}}
+                </a></li>
+              </ul>
+            </div>
+
+          </div>
+          <div class="form-group text-center clearfix  mg-bt-30">
+            <div class="height pull-left">
+              <label for="">Рост, см *</label>
+              <input type="number" class="form-control" id="" placeholder="" min="0"
+                     name="height"
+                     #height="ngModel"
+                     required
+                     [(ngModel)]="user.height"
+                     [textMask]="{mask: mask, guide: false, modelClean: true}"
+              >
+
+            </div>
+            <div class="weight pull-right">
+              <label for="">Вес, кг *</label>
+              <input type="number" class="form-control" id="" placeholder="" min="0"
+                     name="weight"
+                     #weight="ngModel"
+                     required
+                     [(ngModel)]="user.weight"
+                     [textMask]="{mask: mask, guide: false, modelClean: true}"
+
+              >
+            </div>
+            <input type="hidden" class="form-control" id="" placeholder="" name="cognito_id">
+          </div>
+
+          <div class="dropdown doc-prof">
+            <label for="">Страна *</label>
+
+
+            <div class="select" [ngClass]="{'active': show_Countrie}">
+              <div class="search-inp-container">
+                <input id='Country' type="text" placeholder="Введите название страны "
+                       (input)="searchCountries($event.target.value)"
+                       class="form-control search-inp" name="CountrieName" [(ngModel)]="CountrieName">
+              </div>
+              <ul id="search-results" ng-show="focus" class="select-options">
+                <li class="search-result" *ngFor="let c of Countries" (click)="getCountries(c.id,c.name)">{{c.name
+                  }}
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+
+          <div class="form-group form-dropdown allergy mg-bt-30">
+            <label for="">Город *</label>
+
+
+            <div class="select" [ngClass]="{'active': show_select_City}">
+              <div class="search-inp-container">
+                <input type="text" placeholder="Введите название города"
+                       (input)="searchCity($event.target.value)"
+                       id='City'
+                       class="form-control search-inp" [disabled]="CountrieName === 'Страна'"
+                       name="myCity" [(ngModel)]="myCity">
+              </div>
+
+              <ul ng-show="focus" class="select-options">
+                <li class="search-result" *ngFor="let c of City" (click)="createCity(c)">{{c.name}}</li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="form-group form-dropdown illness mg-bt-30">
+            <label for="">Особые состояния</label>
+
+
+            <div class="dropdown doc-prof">
+              <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">{{disease}}
+                <div class="dropdown-arrow-container">
+                  <img src="assets/img/icons/arrow.svg">
+                </div>
+              </button>
+              <ul class="dropdown-menu">
+                <li
+                  *ngFor="let d of desease"
+                  (click)="selectDesease(d)">
+                  <a>
+                    {{d.name}}
+                  </a></li>
+              </ul>
+            </div>
+
+            <div class="illness-presence" *ngFor="let selected of selected_desease;let i=index">
+              {{selected.name}}
+              <a href="javascript:void(0)" class="pull-right" (click)="deleteSelectedDesase(selected,i)"><img
+                src="assets/img/icons/close.svg"></a>
+            </div>
+          </div>
+          <div class="form-group form-dropdown allergy mg-bt-30">
+            <label for="">Аллергии</label>
+
+            <div class="select" [ngClass]="{'active': show_select_A}">
+              <div class="search-inp-container">
+                <input type="text" placeholder="Введите название аллергии" (input)="searchAlergy($event.target.value)"
+                       class="form-control search-inp" (click)="clickInputA()" [(ngModel)]="alergy_name" name="alergy">
+              </div>
+              <ul id="search-results" ng-show="focus" class="select-options">
+                <div *ngIf="search_result" class="text-center">
+                  <svg width='22px'
+                       height='22px'
+                       xmlns="http://www.w3.org/2000/svg"
+                       viewBox="0 0 100 100"
+                       preserveAspectRatio="xMidYMid"
+                       class="uil-ring">
+                    <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+                    <circle
+                      cx="50" cy="50" r="45"
+                      stroke-dasharray="183.7831702350029 98.96016858807849"
+                      stroke="#2576c0" fill="none" stroke-width="10">
+                      <animateTransform
+                        attributeName="transform"
+                        type="rotate" values="0 50 50;180 50 50;360 50 50;"
+                        keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite" begin="0s">
+                      </animateTransform>
+                    </circle>
+                  </svg>
+                </div>
+
+                <li class="search-result" *ngFor="let a of alergy" (click)="selectAlergy(a)">{{a.name}}</li>
+              </ul>
+            </div>
+            <div class="illness-presence" *ngFor="let selected of selected_alergy;let i=index">
+              {{selected.name}}
+              <a href="javascript:void(0)" class="" (click)="deleteSelectedAlergy(selected,i)"><img
+                src="assets/img/icons/close.svg"></a>
+
+            </div>
+          </div>
+          <button
+            type="submit"
+            [disabled]="f.invalid || genders ==='Пол' "
+            class="btn btn-save btn-green mg-bt-30">Сохранить
+          </button>
+          <p class="personal-data-note">Нажимая кнопку «Сохранить», я даю согласие на обработку моих персональных данных
+            в соответствии с <a data-toggle="modal" data-target="#service_rules" class="color-green-teal">Условиями
+              использования</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+  </div>
+
+</div>
+
+<!-- Modal service_rules -->
+<div id="service_rules" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><img src="/assets/img/icons/close-dark.svg"></button>
+        <h4 class="modal-title">Правила пользования сервисом Dr. Smart</h4>
+      </div>
+      <div class="modal-body" [innerHtml]="service_rules_html">
+      </div>
+    </div>
+
+  </div>
+</div>

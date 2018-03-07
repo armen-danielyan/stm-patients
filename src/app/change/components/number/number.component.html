@@ -1,0 +1,30 @@
+<!-- Content -->
+<div class="content">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+    <form #f="ngForm" (ngSubmit)="onRegister(f)">
+      <div class="inner-content change-number">
+        <h4 class="content-title">
+          Смена номера телефона
+        </h4>
+
+        <div class="alert alert-danger" *ngIf="errorMessage!==''">
+          <strong>{{ errorMessage }}</strong>
+        </div>
+
+        <div class="form-group-container">
+
+          <div class="form-group">
+            <label for="tel-old">Старый номер телефона</label>
+            <input type="tel" class="form-control" value="{{old_phone_number}}" id="tel-old" placeholder="+7 (910) 725-07-05" disabled>
+          </div>
+          <div class="form-group">
+            <label for="tel-new">Новый номер телефона</label>
+
+            <app-phone-prefix class="widjet_button" name="new_phone_numbe" #new_phone='ngModel' [maxLength]="18" locale="ru" [(ngModel)]="new_phone_number"></app-phone-prefix>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-login btn-green">Выслать SMS-код</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,156 @@
+<video id="remoteVideo" class="{{chat_video}}" autoplay playsinline></video>
+<div class="call-content" [ngClass]="{'my-class': chat}">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+    <div class="inner-content call">
+      <div class="" id="remoteContainer">
+      </div>
+      <div class="call-header">
+        <div class="interlocutor-info pull-left">
+          <p class="call-person-name">{{doctor_spec}} {{last_name}} {{first_name}} {{mid_name}}</p>
+          <p class="call-duration">{{(minutesDisplay) && (minutesDisplay <=59) ? minutesDisplay : '00'}}:{{(secondsDisplay) && (secondsDisplay <=59) ? secondsDisplay : '00'}}</p>
+        </div>
+        <div class="video-container pull-right">
+          <video id="myVideo" autoplay playsinline muted></video>
+        </div>
+        <div class="row myblock" style="display:none;">
+          <div class="col-lg-3">
+            <div class="btn-panel btn-panel-conversation">
+              <input type="text" class="col-lg-8" id="UserNameInput" placeholder="Change User Name" />
+            </div>
+          </div>
+          <div class="col-lg-offset-1 col-lg-7">
+            <div class="btn-panel btn-panel-msg">
+              <input type="text" class="col-lg-3 pull-right" id="RoomNameInput" placeholder="Change Room" />
+            </div>
+          </div>
+        </div>
+        <div id="UserList" class="conversation-wrap col-lg-3" style="display:none;">
+        </div>
+        <!-- for dev -->
+      </div>
+    </div>
+  </div>
+  <footer class="footer call-footer">
+    <div class="footer-inner">
+      <div class="video-notification" *ngIf="!microphone">У вас выключен микрофон</div>
+      <div class="video-notification" *ngIf="!camera">У вас выключена камера</div>
+      <div class="call-actions">
+        <div class="pic-container camera" (click)="on_off_camera()">
+          <img src="assets/img/icons/camera.svg">
+        </div>
+        <div class="pic-container end-call" (click)="end_call()">
+          <img src="assets/img/icons/end-call.svg">
+        </div>
+        <div class="pic-container micro" (click)="on_off_microphone()">
+          <img src="assets/img/icons/micro.svg">
+        </div>
+      </div>
+      <div class="footer-call">
+        <div class="send-file footer-call-btn">
+          <button type="button" class="btn  btn-call" (click)="FileUploadCall()">Отправить файл</button>
+
+        </div>
+        <div class="chat-doc footer-call-btn">
+          <span class="online-sign" [style.display]="online"></span>
+          <button type="button" class="btn  btn-call" id="redirectChat" (click)="redirectChat()">Чат с врачом</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+
+<div [ngClass]="{'my-class': !chat}">
+  <div id="xx"></div>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="">
+      <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" (click)="redirectVideo()" class="ok">
+              <img src="assets/img/icons/close.svg">
+            </button>
+            <p class="chat-title app-title" href="#">
+              Чат с врачом
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="chat-remote-container" id="remoteContainerChat">
+        <video id="remoteContainerChatVideo" style="width: 68px; height: 100%" autoplay playsinline> </video>
+      </div>
+    </div>
+  </nav>
+  <div class="content chat">
+    <!-- for dev -->
+    <div class="row myblock" style="display:none;">
+      <div class="col-lg-3">
+        <div class="btn-panel btn-panel-conversation">
+          <input type="text" class="col-lg-8" id="UserNameInput" placeholder="Change User Name" />
+        </div>
+      </div>
+      <div class="col-lg-offset-1 col-lg-7">
+        <div class="btn-panel btn-panel-msg">
+          <input type="text" class="col-lg-3 pull-right" id="RoomNameInput" placeholder="Change Room" />
+        </div>
+      </div>
+    </div>
+    <div id="UserList" class="conversation-wrap col-lg-3" style="display:none;">
+    </div>
+    <!-- for dev -->
+
+    <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+      <div class="inner-content" id="MessageList">
+        <div class="footer-call top">
+
+
+        </div>
+        <div class="chat-consultation-info">
+          <p>{{(minutesDisplay) && (minutesDisplay<=59) ? minutesDisplay : '00'}}:{{(secondsDisplay) && (secondsDisplay <=59) ? secondsDisplay : '00'}}</p>
+          <p>{{doctor_spec}} {{last_name}} {{first_name}} {{mid_name}}</p>
+        </div>
+
+      </div>
+    </div>
+
+    <input type="hidden" id="ChatFile" value="{{fileurl}}">
+  </div>
+  <footer class="footer chat">
+    <div class="progress-loading-container" *ngIf="upolad_file">
+      <p class="f-15">Загрузка файла</p>
+      <div class="progress progress-loading">
+        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width': loadingupload}">
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-inner">
+      <div class="file-icon-container pull-left">
+        <a>
+          <img src="assets/img/icons/file.svg">
+        </a>
+        <input type="file" #myFil (change)="FileUpload($event)" class="choose-profile-pic-container" style="
+                width: 22px;
+                height: 19px;
+                opacity: 0;
+                margin-top: -20px;
+                overflow: hidden;
+                position: absolute;
+                z-index: 9999;
+                background-color: red;
+                " accept=".jpg, .png, .jpeg, .pdf">
+      </div>
+      <div class="message-input-container pull-right">
+        <input type="text" name="" placeholder="Сообщение" [style.color]="Color" id="MessageInput" value="{{fileurl}}" [ngStyle]="styleMethod()">
+        <a>
+          <img src="assets/img/icons/send.svg" class="send" id="MessageInputButton">
+        </a>
+      </div>
+    </div>
+
+  </footer>
+
+
+</div>

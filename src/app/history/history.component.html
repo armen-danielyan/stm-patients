@@ -1,0 +1,75 @@
+<!-- Content -->
+<div class="content appeal-history">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+    <h4 class="content-title">
+      История обращений
+    </h4>
+  </div>
+  <div class="clearfix"></div>
+  <mat-progress-spinner class="spinner-appeal-history" *ngIf="loading" diameter="40" mode="indeterminate"></mat-progress-spinner>
+  <div class="appeal-history-blocks-container" *ngFor="let h of result">
+    <div class="appeal-history-block clearfix">
+      <div *ngIf="h.event" class="appointment_point"></div>
+      <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+        <a class="color-green-teal" routerLink="/history/{{h.history_id}}">
+          <div class="appeal-history-content pull-left">
+            <div class="appeal-history-header">
+
+              <!-- <div class="pic-container"
+                              [ngStyle]="{'background-image': 'url('+ h.doctor.photo.src + ')'}"></div> -->
+              <div class="info-container">
+                <div class="full-name">{{h.doctor_last_name}} {{h.doctor_first_name}} {{h.doctor_mid_name}}</div>
+                <p>
+                  <span class="city">{{h.doctor_speciality}}</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="appeal-history-text">
+              {{h.history_message}}
+            </div>
+            <p class="video-available-soon" *ngIf = "!h.history_meeting_start_time">Заявка была отменена</p>
+
+            <div class="appeal-history-footer" *ngIf = "h.history_meeting_start_time">
+              <div class="appeal-date-info-item" >
+                <img src="assets/img/icons/calendar.svg">
+                <span class="appeal-date">
+                  {{h.history_meeting_start_time * 1000 | date:'dd.MM.yyyy'}}
+                </span>
+              </div>
+              <div class="appeal-date-info-item">
+                <img src="assets/img/icons/clock.svg">
+                <span class="appeal-time">
+                  {{h.history_meeting_start_time * 1000 | date:'HH:mm'}}
+                </span>
+              </div>
+              <div class="appeal-date-info-item" *ngIf="correctTime(h.history_duration) !== 'false'">
+                <img src="assets/img/icons/time-past.svg">
+                <span class="appeal-time-past">
+                  {{correctTime(h.history_duration)}}
+                </span>
+              </div>
+            </div>
+
+
+
+          </div>
+        </a>
+        <div class="options-dropdown">
+          <p>Запись приема</p>
+          <p>Архив чата</p>
+          <p (click)="navComplain()">Пожаловаться</p>
+        </div>
+        <div class="options-btn pull-right">
+          <img src="assets/img/icons/combined-shape.svg">
+        </div>
+        <div class="clearfix">
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+
+    </div>
+  </div>

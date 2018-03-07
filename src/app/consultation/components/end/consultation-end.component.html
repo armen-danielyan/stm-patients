@@ -1,0 +1,37 @@
+<div class="content">
+  <mat-progress-spinner class="spinner-after-call-info" *ngIf="loading" diameter="40" mode="indeterminate"></mat-progress-spinner>
+  <div *ngIf="!loading" class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+    <div class="inner-content">
+      <h4 class="content-title">
+        Окончание приёма
+      </h4>
+      <p class="call-note end-call">{{doctor_spec}} {{last_name}} {{first_name}} {{mid_name}} ответит вам с подробными рекомендациями
+        в ближайшие полчаса. По готовности вы получите уведомление.
+        <br><br>
+      </p>
+      <h5>Информация о приёме</h5>
+      <div class="appointment-info">
+        <div class="appointment-info-item">
+          <div>{{doctor_spec}}</div>
+          <div>{{last_name}} {{first_name}} {{mid_name}}</div>
+        </div>        
+        <div class="appointment-info-item">
+          <div>Длительность</div>
+          <div>{{show_waiting_time}}</div>
+        </div>        
+        <div class="appointment-info-item">
+          <div>Стоимость</div>
+          <div>400 ₽</div>
+        </div>
+      </div>
+      <p class="f-13 mg-bt-30">Запись беседы будет доступна
+        в разделе «История болезни»
+        в течении 20 минут.</p>
+      <button
+        type="button"
+        class="btn btn-green"
+        routerLink="/main"
+      >Продолжить</button>
+    </div>
+  </div>
+</div>

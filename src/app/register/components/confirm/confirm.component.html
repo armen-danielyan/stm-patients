@@ -1,0 +1,59 @@
+<!-- Content -->
+<div class="content">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+    <div class="inner-content register step2">
+      <h4 class="content-title">
+        Регистрация
+      </h4>
+      <div class="alert alert-danger" *ngIf="errorMessage !==''">
+        <strong>{{ errorMessage }}</strong>
+      </div>
+      <form #f="ngForm" (ngSubmit)="onConfirmRegistration(f)">
+        <div class="form-group-container">
+          <div class="form-group">
+            <input type="tel" class="form-control" value="{{ phone }}" id="tel" name="phone"
+                   placeholder="Номер телефона"
+                   [(ngModel)]="phone" [textMask]="{mask: mask,  guide: false, modelClean: true}" readonly>
+            <a class="change-link" (click)="changeNumber()">Изменить</a>
+          </div>
+          <div class="form-group">
+            <input
+              type="tel" class="form-control"
+              id="tel"
+              #confirm = 'ngModel'
+              name="confirmationCode"
+              required
+              minlength="6"
+              [(ngModel)]="confirmationCode"
+              placeholder="Код из SMS">
+          </div>
+          <button type="submit" class="btn btn-continue btn-green"  [disabled]="f.invalid">Продолжить</button>
+        </div>
+      </form>
+      <p class="code-time" *ngIf="count_resend">Вы сможете запросить <br> повторный код через: {{countDown | async}} сек.</p>
+      <a class="double-code color-green-teal" (click)="resendCode()" *ngIf="!count_resend">Выслать повторный код</a>
+      <div class="line"></div>
+      <div class="agreement-block">
+        Нажимая кнопку «Продолжить», я даю согласие на обработку моих персональных данных в соответствии с
+        <a class="color-green-teal" data-toggle="modal" data-target="#service_rules">Условиями использования</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal service_rules -->
+<div id="service_rules" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><img src="/assets/img/icons/close-dark.svg"></button>
+        <h4 class="modal-title">Правила пользования сервисом Dr. Smart</h4>
+      </div>
+      <div class="modal-body" [innerHtml]="service_rules_html">
+      </div>
+    </div>
+
+  </div>
+</div>

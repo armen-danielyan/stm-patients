@@ -1,0 +1,68 @@
+<!-- Content -->
+<div class="content history-consultation">
+  <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+    <div class="inner-content">
+      <div class="title-container">
+        <h4 class="content-title">
+          Ваш профиль
+        </h4>
+        <div class="profile-pic-container">
+          <div class="profile-pic" [ngStyle]="{'background-image': 'url(https://s3.us-east-2.amazonaws.com/stm.patient/'+ avatar + ')'}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="full-block history-consultation-block clearfix">
+    <mat-progress-spinner class="spinner-user-info" *ngIf="!information['first_name']" diameter="40" mode="indeterminate"></mat-progress-spinner>
+    <div *ngIf="information['first_name']" class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+      <div class="inner-content">
+        <div class="color-title-gray">
+          <p class="bold">{{information['last_name']}} {{information['first_name']}} {{information['mid_name']}}</p>
+          <p>{{age}} {{year}} {{information['country']}}, {{information['height']}} см, {{information['weight']}} кг</p>
+        </div>
+        <br>
+      </div>
+      <div class="inner-content">
+        <div class="color-title-gray" *ngIf="show_alergy_block">
+          <p class="bold">Аллергии</p>
+          <p *ngFor="let al of allergies">{{al.name}}</p>
+        </div>
+        <br>
+        <!-- <a routerLink="/personal-data" class="color-green-teal">Редактировать</a> -->
+      </div>
+      <div class="inner-content">
+        <div class="color-title-gray" *ngIf="show_illness_block">
+          <p class="bold">Особые состояния</p>
+          <p *ngFor="let dis of illness">{{dis.name}}</p>
+        </div>
+        <hr>
+        <a routerLink="/personal-data" class="color-green-teal">Изменить персональные данные</a>
+        <!-- <a routerLink="/personal-data" class="color-green-teal">Редактировать</a> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="full-block history-consultation-block clearfix">
+    <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+      <div class="inner-content">
+        <div class="color-title-gray">
+          <p class="bold">Номер телефона</p>
+          <p>{{number}}</p>
+        </div>
+        <hr>
+        <a routerLink="/change/number/confirm" class="color-green-teal">Изменить телефон</a>
+        <hr>
+        <a routerLink="/change/password" class="color-green-teal">Сменить пароль</a>
+      </div>
+    </div>
+  </div>
+  <div class="full-block history-consultation-block clearfix">
+    <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+      <div class="inner-content">
+        <a type="button" class="color-green-teal" (click)="logoutUser()">Выход</a>
+      </div>
+    </div>
+  </div>
+</div>

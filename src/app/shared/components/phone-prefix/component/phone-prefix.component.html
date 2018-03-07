@@ -1,0 +1,43 @@
+<!-- selectedCountry {{ selectedCountry | json }} -->
+
+<div class="input-group">
+      <span class="input-group-addon flagInput">
+
+         <div class="dropdown">
+            <button type="button" class="dropbtn btn"
+              (click)="showDropDown()"
+              [disabled]="disabled">
+
+              <span [class]="'flag flag-' + selectedCountry.countryCode"
+                *ngIf="selectedCountry"></span>
+
+              <span class="defaultCountry"
+                *ngIf="!selectedCountry"></span>
+            </button>
+
+            <div class="dropdown-content"
+              [hidden]="!showDropdown"
+              clickOutside="hideDropdown($event)">
+
+              <div class="list-group scrollable-menu" appScroll>
+                <a href="#" class="list-group-item"
+                   *ngFor="let country of countries | phoneCountry: countryFilter"
+                   (click)="updateSelectedCountry($event, country.countryCode)"
+                   [ngClass]="selectedCountry && (country.countryCode === selectedCountry.countryCode) ? ACTIVE_CLASS : ''">
+                  <span [class]="'flag flag-' + country.countryCode"></span>
+                  <span class="country-name">{{ country.name }}  <span
+                    class="dial-code">+&nbsp;{{ country.dialCode}}</span></span>
+                </a>
+              </div>
+            </div>
+        </div>
+      </span>
+  <input [appOnlyNumber]="onlyNumbers"
+    class="form-control"
+    [maxlength]="maxLength"
+    [disabled]="disabled"
+    [(ngModel)]="phoneInput"
+    type="text"
+    (ngModelChange)="updatePhone()"
+  >
+</div>

@@ -1,0 +1,46 @@
+version: 0.2
+
+#env:
+  #variables:
+  #parameter-store:
+
+phases:
+  install:
+    commands:
+      - apt-get update -y && apt-get install apt-utils -y
+      - apt-get upgrade -y
+      - apt-get install python3 python3-pip libyaml-dev curl -y
+      - pip3 install awscli
+      - curl -sL https://deb.nodesource.com/setup_8.x | bash -
+      - apt-get install -y nodejs
+      - npm install
+  pre_build:
+    commands:
+      - PATH=$PATH:$CODEBUILD_SRC_DIR/node_modules/.bin/
+      - echo $ENV
+      - ng set --global warnings.nodeDeprecation=false
+      - npm rebuild node-sass
+  build:
+    commands:
+      - ng build --env=$ENV --aot
+  post_build:
+    commands:
+      - uname -a
+      - node -v
+      - npm -v
+      - ng -v
+      - aws --version
+      - echo $CODEBUILD_SRC_DIR
+      - echo $PATH
+      - echo $S3BUCKET
+      - echo $CLOUDFRONT
+      - echo $AWS_DEFAULT_REGION
+      - aws s3 rm s3://$S3BUCKET --recursive
+      - aws s3 sync $CODEBUILD_SRC_DIR/dist s3://$S3BUCKET --delete
+      - aws s3 website s3://$S3BUCKET --index-document "index.html" --error-document "index.html"
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT --paths "/*"
+artifacts:
+  files:
+    - dist/**/*
+  discard-paths: no
+  base-directory: $CODEBUILD_SRC_DIR

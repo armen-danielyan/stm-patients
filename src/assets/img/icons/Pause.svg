@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="12px" viewBox="0 0 8 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Pause</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="consultation/prepare" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-36.000000, -489.000000)">
+        <path d="M37,489 L38,489 C38.5522847,489 39,489.447715 39,490 L39,500 C39,500.552285 38.5522847,501 38,501 L37,501 C36.4477153,501 36,500.552285 36,500 L36,490 C36,489.447715 36.4477153,489 37,489 Z M42,489 L43,489 C43.5522847,489 44,489.447715 44,490 L44,500 C44,500.552285 43.5522847,501 43,501 L42,501 C41.4477153,501 41,500.552285 41,500 L41,490 C41,489.447715 41.4477153,489 42,489 Z" id="Pause" fill="#00AC64"></path>
+    </g>
+</svg>

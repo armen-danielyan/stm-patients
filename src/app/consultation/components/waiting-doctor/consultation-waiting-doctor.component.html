@@ -1,0 +1,54 @@
+<div class="waiting-doctor-content">
+  <div class="content waiting-doctor">
+    <mat-progress-spinner class="spinner-doctor-info" *ngIf="loading" diameter="40" mode="indeterminate"></mat-progress-spinner>
+    <div *ngIf="!loading">
+      <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+        <div class="inner-content waiting-doctor">
+          <div class="doc-page-header">
+            <div class="doc-pic-container" [ngStyle]="{'background-image': 'url(' + doctor_img + ')'}"></div>
+            <!-- <span class="color-green-teal">Вам назначен</span> -->
+            <div class="doc-page-header-info">
+              <div class="position">{{doctor_spec}}</div>
+              <div class="full-name">{{last_name}}
+                <br> {{first_name}} {{mid_name}}</div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="gray-content">
+        <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4">
+          <div class="inner-content">
+            <div class="doc-waiting-time">Приблизительное время ожидания приёма врача:
+              <span class="bold">{{show_waiting_time}}</span>
+            </div>
+            <div class="waiting-doctor-warning">Если у вас возникнут сомнения, что с Вами разговаривает именно {{last_name}} {{first_name}} {{mid_name}}, пожалуйста,
+              прервите звонок и сообщите в поддержку (это бесплатно)</div>
+            <button type="button" class="btn btn-cancel-call" (click)="cancelCall()">Отменить вызов</button>
+            <hr>
+            <!-- <p class="waiting-doc-note mg-bt-20">Если у вас возникнут сомнения, что с вами разговаривает именно Константин, пожалуйста, прервите звонок и сообщите 
+в поддержку (это бесплатно)</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal privacy_policy -->
+<div id="wrong_routing_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div>
+        <button type="button" class="close" data-dismiss="modal">
+          <img src="/assets/img/icons/close-dark.svg">
+        </button>
+      </div>
+      <div class="modal-body text-center" [innerHtml]="wrong_routing_modal_message"></div>
+    </div>
+  </div>
+</div>
